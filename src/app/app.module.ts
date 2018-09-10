@@ -10,6 +10,13 @@ import { TabsPage } from '../pages/tabs/tabs';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { IntroPage } from '../pages/intro/intro';
+import { ConfigProvider } from '../providers/config/config';
+import { IntroPageModule } from '../pages/intro/intro.module';
+import { PerfilPageModule } from '../pages/perfil/perfil.module';
+import { ConfiguracoesPageModule } from '../pages/configuracoes/configuracoes.module';
+import { HttpClientModule } from '@angular/common/http';
+import { CarrosServiceProvider } from '../providers/carros-service/carros-service';
 
 @NgModule({
   declarations: [
@@ -21,7 +28,11 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    IntroPageModule,
+    PerfilPageModule,
+    ConfiguracoesPageModule,
+    HttpClientModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -34,7 +45,9 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    ConfigProvider,
+    CarrosServiceProvider
   ]
 })
 export class AppModule {}
