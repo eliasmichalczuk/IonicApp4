@@ -5,12 +5,13 @@ import { NavController, LoadingController, AlertController } from 'ionic-angular
 import { Carro } from '../../providers/carros';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { CarrosServiceProvider } from '../../providers/carros-service/carros-service';
+import { EscolhaPage } from '../escolha/escolha';
 
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
-export class HomePage implements NavLifecycles{
+export class HomePage{
   
   public carros: Carro[];
   constructor(public navCtrl: NavController, 
@@ -55,5 +56,15 @@ export class HomePage implements NavLifecycles{
     );
   }
   
+  selecionaCarro(carro: Carro){
+    console.log(carro);
+    this.navCtrl.push(EscolhaPage,
+      //recebe um segundo parametro, propriedade js
+      {
+        carroSelecionado: carro
+      }
+      );
+  }
 
+  
 }
