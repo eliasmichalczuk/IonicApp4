@@ -25,8 +25,7 @@ import { CarrosServiceProvider } from '../providers/carros-service/carros-servic
     AboutPage,
     ContactPage,
     HomePage,
-    TabsPage,
-    EscolhaPage
+    TabsPage
   ],
   imports: [
     BrowserModule,
@@ -42,8 +41,7 @@ import { CarrosServiceProvider } from '../providers/carros-service/carros-servic
     AboutPage,
     ContactPage,
     HomePage,
-    TabsPage,
-    EscolhaPage
+    TabsPage
   ],
   providers: [
     StatusBar,

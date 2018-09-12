@@ -9,8 +9,9 @@
 
 
 <ion-content padding>
-<ion-slides pager="true">
-  <ion-slide *ngFor="let foto of carros.fotos">
+  
+<ion-slides pager="true" style="height:20%">
+  <ion-slide *ngFor="let foto of carro.fotos">
     <img src="{{foto}}" alt="">
   </ion-slide>
 </ion-slides>
@@ -20,29 +21,44 @@
     VEICULO
   </ion-item-divider>
   <ion-item-group>
-  <!-- <ion-item>{{carro.nome}}</ion-item> -->
-  <!-- <ion-item>{{carro.preco}}</ion-item> -->
-</ion-item-group>
+    <ion-item>{{carro.nome}}</ion-item>
+    <ion-item>R${{carro.preco}}</ion-item>
+  </ion-item-group>
 
 <ion-item-group>
   <ion-item-divider>
       <ion-icon name="options"></ion-icon>
     Acessorios
   </ion-item-divider>
-  <ion-item>1</ion-item>
-  <ion-item>2</ion-item>
+  <ion-item *ngFor="let ac of acessorios">
+    <ion-label>
+      <h2>{{ac.nome}}</h2>
+      
+    </ion-label>
+    <ion-toggle #toggle color="secondary"
+      (ionChange)="attPrecoAc(toggle,ac.preco)"></ion-toggle>
+  </ion-item>
 </ion-item-group>
 
   <ion-item-divider>
-      <span item-right>total R$100</span>
+      <span item-right>total R${{_precoTotal}}</span>
     </ion-item-divider>
     
-    <ion-fab top right edge>
+    <!-- <div ion-fixed>
+    <ion-fab ion-fixed top right >
       <button io-fab>
       <ion-icon name="arrow-dropright"></ion-icon>
       </button>
     </ion-fab>
-
+    </div> -->
+    <!-- ion fab not working -->
+    <ion-content>
+      <ion-fab ion-fixed top right >
+        <button io-fab>
+        <ion-icon name="arrow-dropright"></ion-icon>
+        </button>
+      </ion-fab>
+    </ion-content>  
     <!-- <button ion-button block>Avançar</button> -->
 
 

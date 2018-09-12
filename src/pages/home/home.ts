@@ -58,7 +58,8 @@ export class HomePage{
   
   selecionaCarro(carro: Carro){
     console.log(carro);
-    this.navCtrl.push(EscolhaPage,
+    this.navCtrl.push(EscolhaPage.name, //no ionic 3, quando a pagina é tirada do app.component
+    //ela vira lazy, assim é necessário passar por aqui uma string com a página, ao inves da "variavel"
       //recebe um segundo parametro, propriedade js
       {
         carroSelecionado: carro

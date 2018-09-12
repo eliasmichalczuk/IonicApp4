@@ -1,5 +1,4 @@
-export interface Carro{
+export interface Acessorio {
     nome: string;
     preco: number;
-    
 }
