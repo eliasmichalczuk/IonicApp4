@@ -1,3 +1,4 @@
+import { CadastroPage } from './../cadastro/cadastro';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Carro } from '../../providers/carros';
@@ -25,7 +26,8 @@ export class EscolhaPage {
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.navParams.get('carroSelecionado');
     this.carro = this.navParams.get('carroSelecionado');
-    this._precoTotal = this.carro.preco;
+    this._precoTotal = 10000;
+    // this.carro.preco;
     this.acessorios = [
         { nome: 'Freio ABS', preco: 800 },
         { nome: 'Ar-condicionado', preco: 1000 },
@@ -33,15 +35,24 @@ export class EscolhaPage {
     ];
   }
 
-  getPrecoT(){
+  get precoTotal(){
     return this._precoTotal;
   }
 
   attPrecoAc(ativado:boolean, precoAcessorio:number){
     ativado ?
-    this._precoTotal += precoAcessorio : 
+    this._precoTotal += precoAcessorio :
     this._precoTotal -= precoAcessorio;
   }
+
+  public avancarCadastro(){
+    this.navCtrl.push(CadastroPage.name,
+    {
+      carroSelecionado: this.carro,
+      precoTotal: this._precoTotal
+    });
+  }
+
   // ionViewDidLoad() {
   //   console.log('ionViewDidLoad EscolhaPage');
   // }

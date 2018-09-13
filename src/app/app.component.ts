@@ -6,6 +6,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { TabsPage } from '../pages/tabs/tabs';
 import { IntroPage } from '../pages/intro/intro';
 import { ConfigProvider } from '../providers/config/config';
+import { CadastroPage } from '../pages/cadastro/cadastro';
 
 @Component({
   templateUrl: 'app.html',
@@ -15,6 +16,7 @@ import { ConfigProvider } from '../providers/config/config';
 })
 export class MyApp {
   rootPage: any = IntroPage;
+  navCtrl: any;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen,
   configProvider: ConfigProvider) {
@@ -33,4 +35,6 @@ export class MyApp {
       splashScreen.hide();
     });
   }
+
+
 }

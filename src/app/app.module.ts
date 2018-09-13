@@ -18,6 +18,7 @@ import { PerfilPageModule } from '../pages/perfil/perfil.module';
 import { ConfiguracoesPageModule } from '../pages/configuracoes/configuracoes.module';
 import { HttpClientModule } from '@angular/common/http';
 import { CarrosServiceProvider } from '../providers/carros-service/carros-service';
+import { AgendamentosServiceProvider } from '../providers/agendamentos-service/agendamentos-service';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { CarrosServiceProvider } from '../providers/carros-service/carros-servic
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     ConfigProvider,
-    CarrosServiceProvider
+    CarrosServiceProvider,
+    AgendamentosServiceProvider
   ]
 })
 export class AppModule {}
