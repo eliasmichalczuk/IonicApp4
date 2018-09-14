@@ -8,6 +8,8 @@ import { IntroPage } from '../pages/intro/intro';
 import { ConfigProvider } from '../providers/config/config';
 import { CadastroPage } from '../pages/cadastro/cadastro';
 
+import 'rxjs/add/operator/map';
+
 @Component({
   templateUrl: 'app.html',
   providers: [

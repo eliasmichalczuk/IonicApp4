@@ -1,12 +1,10 @@
+import { AgendamentoDaoProvider } from './../../providers/agendamento-dao/agendamento-dao';
 import { HomePage } from './../home/home';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController, Alert } from 'ionic-angular';
 import { AgendamentosServiceProvider } from '../../providers/agendamentos-service/agendamentos-service';
 import { Agendamento } from '../../providers/agendamentos';
-import { Observable } from 'rxjs/Observable';
 
-
-import { Storage } from '@ionic/storage';
 /**
  * Generated class for the CadastroPage page.
  *
@@ -33,7 +31,7 @@ export class CadastroPage {
     public navParams: NavParams,
     private _agendamentosService: AgendamentosServiceProvider,
     private _alertCtrl: AlertController,
-    private _storage: Storage) {
+    private _agendamentoDao: AgendamentoDaoProvider) {
     // this.carro = this.navParams.get('carroSelecionado');
     // this.precoTotal = this.navParams.get('precoTotal');
     this.carro =  {nome: "Gol Prata", preco: 25000};
@@ -68,7 +66,8 @@ export class CadastroPage {
       modeloC: this.carro.nome,
       precoTotal: this.precoTotal,
       confirmado: false,
-      enviado: false //confirmado e enviado, pois a api do cliente da erro a cada tres envios
+      enviado: false, //confirmado e enviado, pois a api do cliente da erro a cada tres envios
+      data: this.data
     }
     this._alerta = this._alertCtrl.create({
       title: 'Aviso',
@@ -88,13 +87,21 @@ export class CadastroPage {
 
     let mensagem = '';
 
+    this._agendamentoDao.ehDuplicado(agendamento)
+      .mergeMap(ehDuplicado => {
+        if(ehDuplicado) {
+          throw new Error('Agendamento existente!');
+        }
+
+        return this._agendamentosService.agenda(agendamento);
+      })
     //necessário usar subscribe pois recebera resposta async
-    this._agendamentosService.agenda(agendamento)
+   
     //pega observable e retorna outro
     //proprio obs to agenda, executa apos tudo, rece como param, resposta do agenda
     .mergeMap((valor) => {
       //valor salvo antes de lançar erro
-      let observable = this.salva(agendamento);
+      let observable = this._agendamentoDao.salva(agendamento);
       //se valor for do tipo erro
       if(valor instanceof Error){
         //lançar erro
@@ -134,17 +141,4 @@ export class CadastroPage {
     //   }
     // );
   }
-
-  //método para utilizar o storage
-  salva(agendamento) {
-    //recebe chave e valor
-    // nao quer chamar minuto e segundo da data
-    let chave = this.email + this.data.substr(0,10);
-    //set retorna uma promise
-    let promise = this._storage.set(chave, agendamento);
-
-    //transforma em observable
-    return Observable.fromPromise(promise);
-  }
-  //atualmento o salva e o agenda retornam um observable, preciso juntar os dois
 }

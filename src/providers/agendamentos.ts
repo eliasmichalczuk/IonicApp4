@@ -5,5 +5,6 @@ export interface Agendamento {
       modeloC: string,
       precoTotal: number,
       confirmado: boolean,
-      enviado: boolean
+      enviado: boolean,
+      data: string
 }

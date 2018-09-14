@@ -16,6 +16,7 @@ import { ConfiguracoesPageModule } from '../pages/configuracoes/configuracoes.mo
 import { HttpClientModule } from '@angular/common/http';
 import { CarrosServiceProvider } from '../providers/carros-service/carros-service';
 import { AgendamentosServiceProvider } from '../providers/agendamentos-service/agendamentos-service';
+import { AgendamentoDaoProvider } from '../providers/agendamento-dao/agendamento-dao';
 
 import { IonicStorageModule } from '@ionic/storage';
 import 'rxjs/add/operator/finally';
@@ -64,7 +65,8 @@ import 'rxjs/add/observable/of';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     ConfigProvider,
     CarrosServiceProvider,
-    AgendamentosServiceProvider
+    AgendamentosServiceProvider,
+    AgendamentoDaoProvider
   ]
 })
 export class AppModule {}
