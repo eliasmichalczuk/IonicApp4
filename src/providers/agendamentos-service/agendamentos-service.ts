@@ -13,3 +13,4 @@ export class AgendamentosServiceProvider {
     return this._http.post(this._url+'/agendamento/agenda', agendamento);
   }
 }
+  

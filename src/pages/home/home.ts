@@ -45,13 +45,13 @@ export class HomePage{
         console.log(err);
         loading.dismiss();
 
-          this.alertCtrl.create({
-            title:'Falha na conexão',
-            subTitle: 'Não foi possível carragar a lista, tente novamente mais tarde',
-              buttons: [
-                { text:'Ok' }
-              ]
-          }).present();//exibe o botao com present
+        this.alertCtrl.create({
+          title:'Falha na conexão',
+          subTitle: 'Não foi possível carragar a lista, tente novamente mais tarde',
+            buttons: [
+              { text:'Ok' }
+            ]
+        }).present();//exibe o botao com present
     }
     );
   }
