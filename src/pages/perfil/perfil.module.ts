@@ -9,5 +9,8 @@ import { PerfilPage } from './perfil';
   imports: [
     IonicPageModule.forChild(PerfilPage),
   ],
+  exports: [
+    PerfilPage
+  ]
 })
 export class PerfilPageModule {}

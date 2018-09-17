@@ -3,10 +3,8 @@ import { Component } from '@angular/core';
 
 import { AboutPage } from '../about/about';
 import { ContactPage } from '../contact/contact';
-import { HomePage } from '../home/home';
 import { PerfilPage } from '../perfil/perfil';
 import { ConfiguracoesPage } from '../configuracoes/configuracoes';
-import { ListaAgendamentosPage } from '../lista-agendamentos/lista-agendamentos';
 
 @Component({
   templateUrl: 'tabs.html'

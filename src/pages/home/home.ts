@@ -1,9 +1,7 @@
-import { NavLifecycles } from './../../utils/ionic/nav/nav-lifecycles';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { NavController, LoadingController, AlertController } from 'ionic-angular';
-
 import { Carro } from '../../models/carros';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpErrorResponse } from '@angular/common/http';
 import { CarrosServiceProvider } from '../../providers/carros-service/carros-service';
 import { EscolhaPage } from '../escolha/escolha';
 
@@ -15,7 +13,6 @@ export class HomePage{
 
   public carros: Carro[];
   constructor(public navCtrl: NavController,
-    private http: HttpClient,
     private _loading: LoadingController,
     private alertCtrl: AlertController,
     private carrosService: CarrosServiceProvider) {

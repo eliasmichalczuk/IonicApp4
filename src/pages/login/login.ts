@@ -1,6 +1,8 @@
+import { UsuarioServiceProvider } from './../../providers/usuario-service/usuario-service';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { HomePage } from '../home/home';
+import { Usuario } from '../../models/usuario';
 
 /**
  * Generated class for the LoginPage page.
@@ -11,24 +13,43 @@ import { HomePage } from '../home/home';
 
 @IonicPage()
 @Component({
-  selector: 'page-login',
-  templateUrl: 'login.html',
+	selector: 'page-login',
+	templateUrl: 'login.html',
 })
 export class LoginPage {
 
-  email: string;
-  senha: string;
+	email: string = 'joao@alura.com.br';
+	senha: string = 'alura123';
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  }
+	constructor(public navCtrl: NavController,
+		public navParams: NavParams,
+		private _usuarioService: UsuarioServiceProvider,
+		private _alert: AlertController) {
+	}
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad LoginPage');
-  }
+	ionViewDidLoad() {
+		console.log('ionViewDidLoad LoginPage');
+	}
 
-  efetuaLogin() {
-    console.log(this.email);
-    console.log(this.senha);
-    this.navCtrl.setRoot(HomePage);
-  }
+	efetuaLogin() {
+		console.log(this.email);
+		console.log(this.senha);
+		this._usuarioService.efetuaLogin(this.email,this.senha)
+							.subscribe(
+								(usuario: Usuario) => {
+									this.navCtrl.setRoot(HomePage);
+								},
+								() => {
+									this._alert.create({
+										title: 'Falha no login',
+										subTitle: 'Email ou senha inválidos',
+										buttons: [
+											{text: 'Ok'}
+										]
+									}).present();
+								}
+							);
+
+		this.navCtrl.setRoot(HomePage);
+	}
 }
