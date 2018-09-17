@@ -1,8 +1,8 @@
 import { CadastroPage } from './../cadastro/cadastro';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { Carro } from '../../providers/carros';
-import { Acessorio } from '../../providers/acessorio';
+import { Carro } from '../../models/carros';
+import { Acessorio } from '../../models/acessorio';
 
 
 /**

@@ -1,4 +1,4 @@
-import { Carro } from './../carros';
+import { Carro } from '../../models/carros';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 

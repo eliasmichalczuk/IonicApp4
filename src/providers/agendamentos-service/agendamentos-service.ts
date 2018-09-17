@@ -1,7 +1,9 @@
-import { Agendamento } from './../agendamentos';
+import { Agendamento } from '../../models/agendamentos';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
+
+import 'rxjs/add/observable/of';
 
 @Injectable()
 export class AgendamentosServiceProvider {
@@ -22,12 +24,11 @@ export class AgendamentosServiceProvider {
                 //catch recebe o erro gerado no post com falha
                 .catch((err) => Observable.of(new Error('Falha no agendamento!')));
   }
-  // O operador catch() do RxJS é acionado quando ocorre uma 
+  // O operador catch() do RxJS é acionado quando ocorre uma
   // exceção no fluxo assíncrono. Ele recebe como parâmetro
-  //  o erro ocorrido e deve retornar um Observable, podendo 
+  //  o erro ocorrido e deve retornar um Observable, podendo
   //  assim dar tratamento correto em caso de algo não sair como esperado.
-  
-  // O padrão de projeto DAO nesse projeto, foi implementado através de um 
+
+  // O padrão de projeto DAO nesse projeto, foi implementado através de um
   // serviço que pode ser injetado em qualquer ponto do nosso sistema.
 }
-  

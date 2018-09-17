@@ -2,7 +2,7 @@ import { NavLifecycles } from './../../utils/ionic/nav/nav-lifecycles';
 import { Component, OnInit } from '@angular/core';
 import { NavController, LoadingController, AlertController } from 'ionic-angular';
 
-import { Carro } from '../../providers/carros';
+import { Carro } from '../../models/carros';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { CarrosServiceProvider } from '../../providers/carros-service/carros-service';
 import { EscolhaPage } from '../escolha/escolha';
@@ -12,14 +12,14 @@ import { EscolhaPage } from '../escolha/escolha';
   templateUrl: 'home.html'
 })
 export class HomePage{
-  
+
   public carros: Carro[];
-  constructor(public navCtrl: NavController, 
+  constructor(public navCtrl: NavController,
     private http: HttpClient,
     private _loading: LoadingController,
     private alertCtrl: AlertController,
     private carrosService: CarrosServiceProvider) {
-        
+
   }
   ionViewDidLoad(): void{
     this.carros = [
@@ -55,7 +55,7 @@ export class HomePage{
     }
     );
   }
-  
+
   selecionaCarro(carro: Carro){
     console.log(carro);
     this.navCtrl.push(EscolhaPage.name, //no ionic 3, quando a pagina é tirada do app.component
@@ -67,5 +67,5 @@ export class HomePage{
       );
   }
 
-  
+
 }

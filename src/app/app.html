@@ -1,1 +1,30 @@
-<ion-nav [root]="rootPage"></ion-nav>
+<ion-split-pane>
+
+
+
+	<ion-menu [content]="conteudo">
+		<ion-content>
+        <ion-item id="cabecalho-menu" class="cabecalho-menu">
+            <div>
+                <ion-avatar item-start>
+                    <img src="assets/img/avatar.jpg">
+                </ion-avatar>
+            </div>
+            <h2>Elias Michalczuk</h2>
+            <p>email@email.com</p>
+        </ion-item>
+
+			<ion-list>
+				<button ion-item menuClose *ngFor="let pag of paginas"
+				(click)="irParaPagina(pag.pagina)">
+					<ion-icon [name]="pag.icone" item-left></ion-icon>
+					{{pag.titulo}}
+				</button>
+			</ion-list>
+		</ion-content>
+	</ion-menu>
+
+
+	<ion-nav [root]="rootPage" main  #conteudo swapeBackEnabled="false"></ion-nav>
+</ion-split-pane>
+<!-- ion-split-pane mostra os dois conteudo se tiver espaço na tela, necessário user main no ion-nav-->

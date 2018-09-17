@@ -1,4 +1,4 @@
-import { EscolhaPage } from './../pages/escolha/escolha';
+import { LoginPage } from './../pages/login/login';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
@@ -23,11 +23,11 @@ import 'rxjs/add/operator/finally';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/fromPromise';
+import { UsuarioServiceProvider } from '../providers/usuario-service/usuario-service';
+
 /**
- * TODO: SEARCH SOLUTION MERGEMAP MODULE NO FOUND
+ * TODO: SEARCH SOLUTION MERGEMAP MODULE NOT FOUND
  */
-import 'rxjs/add/observable/mergeMap';
-import 'rxjs/add/observable/of';
 
 @NgModule({
   declarations: [
@@ -35,7 +35,8 @@ import 'rxjs/add/observable/of';
     AboutPage,
     ContactPage,
     HomePage,
-    TabsPage
+    TabsPage,
+    LoginPage
   ],
   imports: [
     BrowserModule,
@@ -47,7 +48,7 @@ import 'rxjs/add/observable/of';
     IonicStorageModule.forRoot({
       name: 'aluracar',
       storeName: 'agendamentos',
-      //driverorder possui array com os bancos que quero trabalhsr
+      //driverorder possui array com os bancos que quero trabalhar
       driverOrder: ['indexeddb']
     })
   ],
@@ -57,7 +58,8 @@ import 'rxjs/add/observable/of';
     AboutPage,
     ContactPage,
     HomePage,
-    TabsPage
+    TabsPage,
+    LoginPage
   ],
   providers: [
     StatusBar,
@@ -66,7 +68,8 @@ import 'rxjs/add/observable/of';
     ConfigProvider,
     CarrosServiceProvider,
     AgendamentosServiceProvider,
-    AgendamentoDaoProvider
+    AgendamentoDaoProvider,
+    UsuarioServiceProvider
   ]
 })
 export class AppModule {}

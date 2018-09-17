@@ -3,15 +3,10 @@ import { HomePage } from './../home/home';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController, Alert } from 'ionic-angular';
 import { AgendamentosServiceProvider } from '../../providers/agendamentos-service/agendamentos-service';
-import { Agendamento } from '../../providers/agendamentos';
+import { Agendamento } from '../../models/agendamentos'
 
-/**
- * Generated class for the CadastroPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
+import { Carro } from '../../models/carros';
+import 'rxjs/add/operator/mergeMap';
 @IonicPage()
 @Component({
   selector: 'page-cadastro',
@@ -19,7 +14,7 @@ import { Agendamento } from '../../providers/agendamentos';
 })
 export class CadastroPage {
 
-  public carro;
+  public carro: Carro;
   public precoTotal: number;
   public nome: string = '';
   public endereco: string = '';
@@ -27,7 +22,7 @@ export class CadastroPage {
   public data: string = new Date().toISOString();
   private _alerta: Alert;
 
-  constructor(public navCtrl: NavController, 
+  constructor(public navCtrl: NavController,
     public navParams: NavParams,
     private _agendamentosService: AgendamentosServiceProvider,
     private _alertCtrl: AlertController,
@@ -39,7 +34,6 @@ export class CadastroPage {
 
     //foi criado apenas um alerta no construtor, assim o alerta é destruído
     //após a utilização
-    // this._alerta 
   }
 
   agenda(){
@@ -56,7 +50,7 @@ export class CadastroPage {
         ]
       }).present();
 
-      return; 
+      return;
     }
 
     let agendamento: Agendamento = {
@@ -73,17 +67,17 @@ export class CadastroPage {
       title: 'Aviso',
       buttons: [
         {
-          text: 'Ok', 
+          text: 'Ok',
           //segundo argumento, handler
           handler: () => {
-            //nao quero que a homepage fique em cima da pilha, nao quero backbuttom
+            //nao quero que a homepage fique em cima da pilha, sem backbuttom
             //definir como tela raiz
             //this.navCtrl.push()
             this.navCtrl.setRoot(HomePage);
           }
         }
       ]
-    });//assim sempre funciona o alerta
+    });
 
     let mensagem = '';
 
@@ -96,7 +90,7 @@ export class CadastroPage {
         return this._agendamentosService.agenda(agendamento);
       })
     //necessário usar subscribe pois recebera resposta async
-   
+
     //pega observable e retorna outro
     //proprio obs to agenda, executa apos tudo, rece como param, resposta do agenda
     .mergeMap((valor) => {
@@ -111,15 +105,12 @@ export class CadastroPage {
     })
     //atualmente, não é salvo no db os agendamentos não enviados devido a erro
 
-
-
     //callback executa sempre que o observable termina
     //finaly nao vem habilitado por padrao, necessario importar no app module
     .finally(
       () => {
           this._alerta.setSubTitle(mensagem);
-          this._alerta.present();//possível tipar o metodo para o  alerta, para gerar erros
-          //de syntax
+          this._alerta.present();
       }
     )
     .subscribe(
@@ -127,7 +118,10 @@ export class CadastroPage {
         () => mensagem = 'Agendamento realizado',
         (err: Error) => mensagem = err.message,
       );
-    //substituido com a utilização do finally
+
+  }
+}
+//substituido com a utilização do finally
     // .subscribe(
     //   //alert padrao
     //   () => {
@@ -140,5 +134,3 @@ export class CadastroPage {
     //     this._alerta.present();
     //   }
     // );
-  }
-}
