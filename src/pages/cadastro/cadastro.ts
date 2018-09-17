@@ -7,11 +7,14 @@ import { Agendamento } from '../../models/agendamentos'
 
 import { Carro } from '../../models/carros';
 import 'rxjs/add/operator/mergeMap';
+import { Vibration } from '@ionic-native/vibration';
 @IonicPage()
 @Component({
   selector: 'page-cadastro',
   templateUrl: 'cadastro.html',
 })
+//ionic cordova plugin add cordova-plugin-vibration
+//npm install --save @ionic-save/vibration
 export class CadastroPage {
 
   public carro: Carro;
@@ -26,7 +29,8 @@ export class CadastroPage {
     public navParams: NavParams,
     private _agendamentosService: AgendamentosServiceProvider,
     private _alertCtrl: AlertController,
-    private _agendamentoDao: AgendamentoDaoProvider) {
+    private _agendamentoDao: AgendamentoDaoProvider,
+    private _vibration: Vibration) {
     // this.carro = this.navParams.get('carroSelecionado');
     // this.precoTotal = this.navParams.get('precoTotal');
     this.carro =  {nome: "Gol Prata", preco: 25000};
@@ -40,6 +44,8 @@ export class CadastroPage {
     // console.log(this.nome);
     //verificação de dados inseridos
     if(!this.nome || !this.email || !this.endereco){
+      this._vibration.vibrate(200);
+
       this._alertCtrl.create({
         title: 'Aviso',
         subTitle: 'Preencha todos os campos!',

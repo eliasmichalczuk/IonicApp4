@@ -1,3 +1,4 @@
+import { UsuarioServiceProvider } from './../../providers/usuario-service/usuario-service';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
@@ -8,7 +9,12 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class PerfilPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController,
+    public navParams: NavParams,
+    private _usuarioService: UsuarioServiceProvider) {
   }
 
+  get usuarioLogado() {
+    return this._usuarioService.usuarioLogado;
+  }
 }

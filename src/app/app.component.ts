@@ -1,3 +1,4 @@
+import { UsuarioServiceProvider } from './../providers/usuario-service/usuario-service';
 import { PerfilPage } from './../pages/perfil/perfil';
 import { Component, ViewChild } from '@angular/core';
 import { Platform, Nav } from 'ionic-angular';
@@ -32,7 +33,8 @@ export class MyApp {
   constructor(platform: Platform,
 	statusBar: StatusBar,
 	splashScreen: SplashScreen,
-	configProvider: ConfigProvider) {
+  configProvider: ConfigProvider,
+  private _usuarioService: UsuarioServiceProvider) {
 	platform.ready().then(() => {
 	  // Okay, so the platform is ready and our plugins are available.
 	  // Here you can do any higher level native things you might need.
@@ -53,4 +55,7 @@ export class MyApp {
 	this.nav.push(componente);
   }
 
+  get usuarioLogado() {
+    return this._usuarioService.usuarioLogado;
+  }
 }

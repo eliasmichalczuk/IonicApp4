@@ -1,3 +1,4 @@
+import { Vibration } from '@ionic-native/vibration';
 import { LoginPage } from './../pages/login/login';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -24,6 +25,7 @@ import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/fromPromise';
 import { UsuarioServiceProvider } from '../providers/usuario-service/usuario-service';
+import { ApiServiceProvider } from '../providers/api-service/api-service';
 
 /**
  * TODO: SEARCH SOLUTION MERGEMAP MODULE NOT FOUND
@@ -69,7 +71,9 @@ import { UsuarioServiceProvider } from '../providers/usuario-service/usuario-ser
     CarrosServiceProvider,
     AgendamentosServiceProvider,
     AgendamentoDaoProvider,
-    UsuarioServiceProvider
+    UsuarioServiceProvider,
+    ApiServiceProvider,
+    Vibration
   ]
 })
 export class AppModule {}

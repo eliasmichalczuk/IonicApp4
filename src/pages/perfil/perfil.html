@@ -7,7 +7,7 @@
     <ion-item no-lines>
       <div class="avatar-wrapper">
         <ion-avatar>
-          <img src="assets/img/avatar.jpg">
+          <img src="assets/img/avatar-padrao.jpg">
         </ion-avatar>
 
         <button class="btn-tirar-foto" ion-button ion-only round>
@@ -19,22 +19,22 @@
   <ion-card>
     <ion-item>
       <ion-icon name="contact" item-left></ion-icon>
-      Elias Michalczuk
+      {{usuarioLogado.nome}}
     </ion-item>
 
     <ion-item>
         <ion-icon name="flame" item-left></ion-icon>
-        <p>01/01/1990</p>
+        <p>{{usuarioLogado.dataNascimento}}</p>
       </ion-item>
 
       <ion-item>
           <ion-icon name="at" item-left></ion-icon>
-          <p>eliasmichal@gmail.com</p>
+          <p>{{usuarioLogado.email}}</p>
         </ion-item>
 
         <ion-item>
             <ion-icon name="call" item-left></ion-icon>
-            <p>+55 47 962358476</p>
+            <p>{{usuarioLogado.telefone}}</p>
           </ion-item>
   </ion-card>
 </ion-content>

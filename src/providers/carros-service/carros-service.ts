@@ -1,3 +1,4 @@
+import { ApiServiceProvider } from './../api-service/api-service';
 import { Carro } from '../../models/carros';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -11,12 +12,14 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class CarrosServiceProvider {
 
-  constructor(public http: HttpClient) {
-    console.log('Hello CarrosServiceProvider Provider');
+  _url: string;
+  constructor(public http: HttpClient,
+              private _api: ApiServiceProvider) {
+              this._url = this._api.url;
   }
 
   lista(){
-    return this.http.get<Carro[]>('http://localhost:8080/api/carro/listatodos');
+    return this.http.get<Carro[]>(this._url+'/carro/listaTodos');
   }
 
 }

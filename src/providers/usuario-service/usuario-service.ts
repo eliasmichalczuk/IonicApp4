@@ -1,3 +1,4 @@
+import { ApiServiceProvider } from './../api-service/api-service';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Usuario } from '../../models/usuario';
@@ -7,15 +8,17 @@ import { Usuario } from '../../models/usuario';
 export class UsuarioServiceProvider {
 
   private _usuarioLogado: Usuario;
-
-  constructor(private _http: HttpClient) {
+  _url: string;
+  constructor(private _http: HttpClient,
+              private _api: ApiServiceProvider) {
+              this._url = this._api.url;
   }
 
   efetuaLogin(email, senha) {
     //enviado dados para a api
     //cast de usuario para indicar o tipo, por que usuario recebe tipo objet como padrao
     //post do http retorna um observable
-    return this._http.post<Usuario>('http://localhost:8080/api/login', {email, senha})
+    return this._http.post<Usuario>(this._url+'/login', {email, senha})
     //do pega o usuario retornado pela api, e salva no _usuarioLogado
     //do apenas é executado em caso de sucesso
               .do((usuario: Usuario) => this._usuarioLogado = usuario);
