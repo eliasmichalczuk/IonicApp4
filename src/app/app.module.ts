@@ -27,9 +27,20 @@ import 'rxjs/add/observable/fromPromise';
 import { UsuarioServiceProvider } from '../providers/usuario-service/usuario-service';
 import { ApiServiceProvider } from '../providers/api-service/api-service';
 
+import { DatePicker } from '@ionic-native/date-picker';
+//import { Vibration } from '@ionic-native/vibration';
+
 /**
  * TODO: SEARCH SOLUTION MERGEMAP MODULE NOT FOUND
+ * TODO: SOLVE VIBRATION dependencies
  */
+
+ //ionic cordova plugin add cordova-plugin-vibration@2.1.6
+//npm install --save @ionic-native/vibration
+//ionic cordova plugin add cordova-plugin-datepicker@0.9
+//npm install --save @ionic-native/datepicker
+
+
 
 @NgModule({
   declarations: [
@@ -73,7 +84,8 @@ import { ApiServiceProvider } from '../providers/api-service/api-service';
     AgendamentoDaoProvider,
     UsuarioServiceProvider,
     ApiServiceProvider,
-    Vibration
+    Vibration,
+    DatePicker
   ]
 })
 export class AppModule {}

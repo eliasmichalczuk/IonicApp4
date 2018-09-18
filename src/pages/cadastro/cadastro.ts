@@ -7,14 +7,13 @@ import { Agendamento } from '../../models/agendamentos'
 
 import { Carro } from '../../models/carros';
 import 'rxjs/add/operator/mergeMap';
-import { Vibration } from '@ionic-native/vibration';
+import { DatePicker } from '@ionic-native/date-picker';
 @IonicPage()
 @Component({
   selector: 'page-cadastro',
   templateUrl: 'cadastro.html',
 })
-//ionic cordova plugin add cordova-plugin-vibration
-//npm install --save @ionic-save/vibration
+
 export class CadastroPage {
 
   public carro: Carro;
@@ -30,7 +29,8 @@ export class CadastroPage {
     private _agendamentosService: AgendamentosServiceProvider,
     private _alertCtrl: AlertController,
     private _agendamentoDao: AgendamentoDaoProvider,
-    private _vibration: Vibration) {
+    //private _vibration: Vibration
+    private _datePicker: DatePicker) {
     // this.carro = this.navParams.get('carroSelecionado');
     // this.precoTotal = this.navParams.get('precoTotal');
     this.carro =  {nome: "Gol Prata", preco: 25000};
@@ -44,7 +44,7 @@ export class CadastroPage {
     // console.log(this.nome);
     //verificação de dados inseridos
     if(!this.nome || !this.email || !this.endereco){
-      this._vibration.vibrate(200);
+      //this._vibration.vibrate(200);
 
       this._alertCtrl.create({
         title: 'Aviso',
@@ -125,6 +125,14 @@ export class CadastroPage {
         (err: Error) => mensagem = err.message,
       );
 
+  }
+
+  selecionaData() {
+    this._datePicker.show({
+      date: new Date(),
+      mode: 'date'
+      //thid.data recebe data formatada
+    }).then(data => this.data = data.toISOString());
   }
 }
 //substituido com a utilização do finally

@@ -39,9 +39,9 @@
       <ion-label stacked>Email: </ion-label>
       <ion-input [(ngModel)]="email" name="email"></ion-input>
     </ion-item>
-    <ion-item>
+    <ion-item (click)="selecionaData()">
       <ion-label stacked>Data: </ion-label>
-      <ion-datetime [(ngModel)]="data" name="data" displayFormat="DD/MM/YYYY"></ion-datetime>
+      <ion-datetime disabled="true" [(ngModel)]="data" name="data" displayFormat="DD/MM/YYYY"></ion-datetime>
     </ion-item>
 
 
