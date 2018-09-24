@@ -8,6 +8,7 @@ import { Agendamento } from '../../models/agendamentos'
 import { Carro } from '../../models/carros';
 import 'rxjs/add/operator/mergeMap';
 import { DatePicker } from '@ionic-native/date-picker';
+
 @IonicPage()
 @Component({
   selector: 'page-cadastro',
@@ -31,10 +32,10 @@ export class CadastroPage {
     private _agendamentoDao: AgendamentoDaoProvider,
     //private _vibration: Vibration
     private _datePicker: DatePicker) {
-    // this.carro = this.navParams.get('carroSelecionado');
-    // this.precoTotal = this.navParams.get('precoTotal');
-    this.carro =  {nome: "Gol Prata", preco: 25000};
-    this.precoTotal = 25200;
+    this.carro = this.navParams.get('carroSelecionado');
+    this.precoTotal = this.navParams.get('precoTotal');
+    //this.carro =  {nome: "Gol Prata", preco: 25000};
+    // this.precoTotal = 25200;
 
     //foi criado apenas um alerta no construtor, assim o alerta é destruído
     //após a utilização

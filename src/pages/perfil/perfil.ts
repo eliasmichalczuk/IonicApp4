@@ -1,3 +1,4 @@
+import { LoginPage } from './../login/login';
 import { UsuarioServiceProvider } from './../../providers/usuario-service/usuario-service';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
@@ -16,5 +17,9 @@ export class PerfilPage {
 
   get usuarioLogado() {
     return this._usuarioService.usuarioLogado;
+  }
+
+  logout() {
+    this.navCtrl.setRoot(LoginPage);
   }
 }

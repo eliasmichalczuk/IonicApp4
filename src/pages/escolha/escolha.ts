@@ -24,9 +24,10 @@ export class EscolhaPage {
   private _precoTotal: number;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-    this.navParams.get('carroSelecionado');
+    //this.navParams.get('carroSelecionado');
     this.carro = this.navParams.get('carroSelecionado');
-    this._precoTotal = 10000;
+    // this._precoTotal = 10000;
+    this._precoTotal = this.carro.preco;
     // this.carro.preco;
     this.acessorios = [
         { nome: 'Freio ABS', preco: 800 },

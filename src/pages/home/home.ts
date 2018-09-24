@@ -11,7 +11,10 @@ import { EscolhaPage } from '../escolha/escolha';
 })
 export class HomePage{
 
+  public _pesquisa: string;
+
   public carros: Carro[];
+  public listaCarros: Carro[];
   constructor(public navCtrl: NavController,
     private _loading: LoadingController,
     private alertCtrl: AlertController,
@@ -19,10 +22,25 @@ export class HomePage{
 
   }
   ionViewDidLoad(): void{
-    this.carros = [
-      {nome: 'vrum',preco: 89220}
-    ];
+    // this.carros = [
+    //   {nome: 'vrum',preco: 89220}
+    // ];
 
+    this.callCarros();
+  }
+
+  selecionaCarro(carro: Carro){
+    console.log(carro);
+    this.navCtrl.push(EscolhaPage.name, //no ionic 3, quando a pagina é tirada do app.component
+    //ela vira lazy, assim é necessário passar por aqui uma string com a página, ao inves da "variavel"
+      //recebe um segundo parametro, propriedade js
+      {
+        carroSelecionado: carro
+      }
+      );
+  }
+
+  callCarros() {
     let loading = this._loading.create({
       content: 'Carregando'
     });
@@ -35,7 +53,8 @@ export class HomePage{
     //primeiro callback
     (carros) => {
       this.carros = carros;
-      loading.dismiss();
+    this.listaCarros = carros;
+    loading.dismiss();
     },
     //segundo callback, subscribe aceita de erro
     (err: HttpErrorResponse) => {
@@ -53,16 +72,25 @@ export class HomePage{
     );
   }
 
-  selecionaCarro(carro: Carro){
-    console.log(carro);
-    this.navCtrl.push(EscolhaPage.name, //no ionic 3, quando a pagina é tirada do app.component
-    //ela vira lazy, assim é necessário passar por aqui uma string com a página, ao inves da "variavel"
-      //recebe um segundo parametro, propriedade js
-      {
-        carroSelecionado: carro
-      }
-      );
+  onInput2() {
+    console.log(this._pesquisa);
+    if(this._pesquisa == ''){
+      this.onCancel();
+    }
+    this.carros = this.carros.filter(carro => carro.nome == this._pesquisa);
+    if(this.carros.length == 0) this.carros = this.listaCarros;
   }
 
+  onInput(){
+    console.log(this._pesquisa);
+    if(this._pesquisa == ''){
+      this.onCancel();
+    }
+    this.carros = this.carros.filter(carro => carro.nome.indexOf(this._pesquisa) >= 0);
+  }
 
+  onCancel() {
+    this._pesquisa = '';
+    this.ionViewDidLoad();
+  }
 }

@@ -58,12 +58,13 @@ import { DatePicker } from '@ionic-native/date-picker';
     PerfilPageModule,
     ConfiguracoesPageModule,
     HttpClientModule,
-    IonicStorageModule.forRoot({
-      name: 'aluracar',
-      storeName: 'agendamentos',
-      //driverorder possui array com os bancos que quero trabalhar
-      driverOrder: ['indexeddb']
-    })
+    // IonicStorageModule.forRoot({
+    //   name: 'aluracar',
+    //   storeName: 'agendamentos',
+    //   //driverorder possui array com os bancos que quero trabalhar
+    //   driverOrder: ['indexeddb']
+    // })
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -84,7 +85,7 @@ import { DatePicker } from '@ionic-native/date-picker';
     AgendamentoDaoProvider,
     UsuarioServiceProvider,
     ApiServiceProvider,
-    Vibration,
+    //Vibration,
     DatePicker
   ]
 })
