@@ -32,6 +32,28 @@ module.exports = app => {
         "email": "joao@alura.com.br",
         "senha": "alura123"
     };
+    let Users = [];
+    Users.push(usuario);
+
+    app.post('/api/register', (req, res) => {
+        let newUser = req.body;
+
+        if(newUser != null){
+            this.Users.push({
+                "cpf": newUser.cpf,
+                "nome": newUser.nome,
+                "dataNascimento": newUser.dataNascimento,
+                "telefone": newUser.telefone,
+                "email": newUser.email,
+                "senha": newUser.senha
+            });
+            res.status(200).end();
+        }
+        else{
+            console.log('Cadastro nulo.');
+            res.status(400);
+        }
+    });
 
     app.get('/api/carro/listaTodos', (req, res) =>
         res.json(carros));
@@ -51,17 +73,32 @@ module.exports = app => {
         }
     });
 
+    // app.post('/api/login', (req, res) => {
+    //     let usuarioLogin = req.body;
+
+    //     if (usuarioLogin.email == usuario.email 
+    //         && usuarioLogin.senha == usuario.senha) {
+
+    //             res.json(usuario);
+    //     } else {
+    //         res.status(403).end();
+    //     }
+    // });
+
     app.post('/api/login', (req, res) => {
-        let usuarioLogin = req.body;
-
-        if (usuarioLogin.email == usuario.email 
-            && usuarioLogin.senha == usuario.senha) {
-
-                res.json(usuario);
-        } else {
-            res.status(403).end();
-        }
-    });
+            let usuarioLogin = req.body;
+    
+            let result = Users.filter(
+                    (user) => user.email === usuarioLogin.email 
+                    && user.senha === usuarioLogin.senha
+                );
+            if(result) {
+                res.json(result);
+            }
+            else {
+                res.status(401).end();
+            }
+        });
 
     function enviaNotificacao(agendamento) {
         const agendamentoId = agendamento.emailCliente + agendamento.data.substr(0, 10);
