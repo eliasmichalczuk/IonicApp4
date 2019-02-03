@@ -13,12 +13,12 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content padding style="margin-top: 10px;">
 
     <h2>{{carro.nome}}</h2>
     <p>{{precoTotal}}</p>
 
-    <ion-fab top right edge>
+    <ion-fab top right edge >
       <button ion-fab (click)="formulario.ngSubmit.emit()">
         <ion-icon name="arrow-dropright"></ion-icon>
       </button>

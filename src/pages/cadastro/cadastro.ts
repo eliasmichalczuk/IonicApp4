@@ -50,9 +50,11 @@ export class CadastroPage {
       this._alertCtrl.create({
         title: 'Aviso',
         subTitle: 'Preencha todos os campos!',
+        cssClass: 'test-alert-negative',
         buttons: [
           {
-            text: 'Ok'
+            text: 'Ok',
+            cssClass: 'test-ok-button-negative'
           }
         ]
       }).present();
@@ -75,6 +77,7 @@ export class CadastroPage {
       buttons: [
         {
           text: 'Ok',
+          cssClass: 'test-ok-button-positive',
           //segundo argumento, handler
           handler: () => {
             //nao quero que a homepage fique em cima da pilha, sem backbuttom
@@ -117,6 +120,7 @@ export class CadastroPage {
     .finally(
       () => {
           this._alerta.setSubTitle(mensagem);
+          this._alerta.setCssClass('test-alert-positive');
           this._alerta.present();
       }
     )

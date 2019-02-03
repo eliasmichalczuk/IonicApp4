@@ -15,7 +15,7 @@
     (ionCancel)="onCancel()">
   </ion-searchbar>
   <ion-list>
-    <ion-item *ngFor="let carro of carros" (click)="selecionaCarro(carro)">
+    <ion-item *ngFor="let carro of carros" (click)="selecionaCarro(carro)" class="test-car">
         <h2>{{carro.nome}}</h2>
         <h3>{{carro.preco}}</h3>
         <p>Disponível</p>
