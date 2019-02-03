@@ -39,6 +39,9 @@ import { DatePicker } from '@ionic-native/date-picker';
 //npm install --save @ionic-native/vibration
 //ionic cordova plugin add cordova-plugin-datepicker@0.9
 //npm install --save @ionic-native/datepicker
+//plugin add cordova-plugin-camera@2.4.1, @ionic-native/camera
+//instalar ionic cordova plugin add onesignal-cordova-plugin@2.2.5
+//npm i @ionic-native/onesignal
 
 
 

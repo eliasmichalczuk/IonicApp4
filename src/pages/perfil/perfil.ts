@@ -22,4 +22,9 @@ export class PerfilPage {
   logout() {
     this.navCtrl.setRoot(LoginPage);
   }
+
+  // instalar camera nativa @2.3.4
+  get avatar() {
+    return 'avatar';
+  }
 }
